@@ -63,13 +63,17 @@ UITableViewDelegate {
         formatter.dateFormat = "MM/dd/YYYY"
         currentDate = formatter.string(from: date)
         
-        storeDictionary()
-        
-        loadData()
-        
         
         // reloads the table data when the view loads
         todayExTable.reloadData()
+        
+        // to prevent erasing whats stored this only loads the save function if something is in the
+        // todayEx array. Which is the array that loads the table
+        if(!todayEx.isEmpty){
+        storeDictionary()
+        }
+        
+        //loadData()
     }
 
     
@@ -99,7 +103,7 @@ UITableViewDelegate {
         }
         
         saveData(value: todayExDict)
-         print(todayExDict)
+        print("View Did Load dict: ", todayExDict)
     }
     
     
@@ -136,8 +140,12 @@ UITableViewDelegate {
         if let dict = myDict{
             todayExDict = dict.object(forKey: exerciseKey) as! [String : String]
             
+            
             // attempt to parse the dictionary
             workoutNamesAndInfoCombine = todayExDict[currentDate]!
+            
+            print("workoutNamesAndInfoComing: ", workoutNamesAndInfoCombine)
+            
             var parseDictionaryArray:[String] = []
             parseDictionaryArray = workoutNamesCombine.components(separatedBy: "/")
             workoutNamesCombine = parseDictionaryArray[0]
@@ -151,14 +159,20 @@ UITableViewDelegate {
             // this parses the string into the array to load the data in the table
             todayEx = workoutNamesCombine.components(separatedBy: ":")
             todayExInfo = workoutInfoCombine.components(separatedBy: "*")
-           
-            //print(todayExDict)
+            
+            //print("Workout Names: ",workoutNamesCombine)
+            //print("workout Info: ", workoutInfoCombine)
+            //print("todayExInfo array: ",todayExInfo)
+            print("")
+           // print("load Data function dict: ", todayExDict)
+            
+            print("the load data function just loaded")
         }else{
             print("load failure.")
         }
     }
     
-    
+
 
     
     // this saves the data for the array into the dictionary
@@ -173,6 +187,8 @@ UITableViewDelegate {
         dict.setObject(value, forKey: exerciseKey as NSCopying)
         dict.write(toFile: path, atomically: false)
         print("saved.")
+        
+        print("The save data function just saved")
     }
     
 
@@ -218,7 +234,7 @@ UITableViewDelegate {
         }else{
             cell.exerciseInfo.text = ""
         }
-        print(currentDate)
+       // print(currentDate)
         return cell
     }
     

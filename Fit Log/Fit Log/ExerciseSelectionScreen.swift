@@ -81,7 +81,7 @@ class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableV
         }
         
         let resultDictionary = NSMutableDictionary(contentsOfFile: path)
-        print("load ExerciseLog.plist is -> \(resultDictionary?.description)")
+        //print("load ExerciseLog.plist is -> \(resultDictionary?.description)")
         
         let myDict = NSDictionary(contentsOfFile: path)
         
@@ -94,6 +94,8 @@ class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableV
             //print(exSelectVariable)
             // this parses the string into the array to load the data in the table
             exSelection = exSelectVariable.components(separatedBy: ":")
+            
+            print("The loadData() function in ExerciseSelection view just loaded")
         }else{
             print("load failure.")
         }
@@ -112,6 +114,7 @@ class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableV
         dict.setObject(value, forKey: exerciseKey as NSCopying)
         dict.write(toFile: path, atomically: false)
         print("saved.")
+        print("saved data function in exercise selection class just loaded")
     }
     
     
