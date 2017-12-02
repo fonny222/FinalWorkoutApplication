@@ -7,16 +7,21 @@
 //
 
 import UIKit
+import CoreData
 
 class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
-    // writing to the plist
-    let exerciseKey = "ExerciseSelector"
-    var exItemValue: String?
-    
-    
     
     // this is a global var to be used to store the value of the cell you click on in the table
     var valueToPass:String!
+    var exInfoFromSelectionScreen = ""
+    
+    // for getting the current date
+    let date = Date()
+    let calendar = Calendar.current
+    let formatter = DateFormatter()
+    var currentDate = ""
+    var timeStamp = ""
+
     
     //array to load data into table
     var exSelection:[String] = []
@@ -34,98 +39,59 @@ class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableV
     // this is the outlet for the tableview
     @IBOutlet weak var exSelectionTable: UITableView!
     
+    // initialize core data for save and load****
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadData()
+        
+        // for the date formatting
+        // had to call it in here otherwise it wouldn't load
+        formatter.dateFormat = "MM/dd/YYYY"
+        currentDate = formatter.string(from: date)
+        let hours = calendar.component(.hour, from: date)
+        let minutes = calendar.component(.minute, from: date)
+        let seconds = calendar.component(.second, from: date)
+        print("\(hours), \(minutes), \(seconds)")
+        var timeCombine = (((hours * 60) * 60) + (minutes * 60) + seconds)
+        
+        timeStamp = "\(timeCombine)"
         
         // this is for return removes keyboard
         self.exerciseCreation.delegate = self
-        
-        // this runs the loadData plist function
-        loadData()
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
-    
-    
-    
-    
-    // this loads the data from the plist
-    func loadData(){
-    let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
+    // this removes the text entry and has a pop up to add an exercise to the list
+    @IBAction func addExercise(_ sender: Any) {
         
-        let documentDirectory = paths[0] as! String
-        let path = documentDirectory.appending("ExerciseLog.plist")
-        let fileManager = FileManager.default
-        if(!fileManager.fileExists(atPath: path)){
-            if let bundlePath = Bundle.main.path(forResource: "ExerciseLog", ofType: "plist"){
-                let result = NSMutableDictionary(contentsOfFile: bundlePath)
-                print("Bundle File ExerciseLog.plist is -> \(result?.description)")
-                do{
-                    try fileManager.copyItem(atPath: bundlePath, toPath: path)
-                }catch{
-                    print("copy failure.")
-                }
-            }else{
-                print("file ExerciseLog.plist not found.")
+        let alert = UIAlertController(title: "New Name", message: "Add a new name", preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default) {
+            [unowned self] action in
+            guard let textField = alert.textFields?.first,
+                let exToSave = textField.text else {
+                    return
             }
-        }else{
-            print("file ExerciseLog.plist already exits at path")
+            
+            // adds exercise saved to array that populates list
+            // appends the array that feeds the tableview
+            self.exSelection.append(exToSave)
+            self.saveData(exerciseValue: exToSave)
+            self.exSelectionTable.reloadData()
         }
-        
-        let resultDictionary = NSMutableDictionary(contentsOfFile: path)
-        //print("load ExerciseLog.plist is -> \(resultDictionary?.description)")
-        
-        let myDict = NSDictionary(contentsOfFile: path)
-        
-        if let dict = myDict{
-            
-            exItemValue = dict.object(forKey: exerciseKey) as! String
-            
-            exSelectVariable = exItemValue!
-            
-            //print(exSelectVariable)
-            // this parses the string into the array to load the data in the table
-            exSelection = exSelectVariable.components(separatedBy: ":")
-            
-            print("The loadData() function in ExerciseSelection view just loaded")
-        }else{
-            print("load failure.")
-        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default)
+        alert.addTextField()
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
     }
     
     
-// this saves the data for the array into the dictionary
-    func saveData(value:String){
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
-        let documentDirectory = paths.object(at: 0) as! String
-        
-        let path = documentDirectory.appending("ExerciseLog.plist")
-        
-        let dict: NSMutableDictionary = [:]
-        
-        dict.setObject(value, forKey: exerciseKey as NSCopying)
-        dict.write(toFile: path, atomically: false)
-        print("saved.")
-        print("saved data function in exercise selection class just loaded")
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // this function makes the keyboard go away when you press return key
+   /* // this function makes the keyboard go away when you press return key
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         // takes variable from text field when you hit return
@@ -136,18 +102,89 @@ class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableV
         exSelection.append(exTextField!)
         
         exSelectVariable = exSelection.joined(separator: ":")
-        saveData(value: exSelectVariable)
         
-        //print(exSelectVariable)
         
         // this reloads the table with the new data
         exSelectionTable.reloadData()
+        saveData(exerciseValue: exTextField!)
         
         exerciseCreation.resignFirstResponder()
         
-            return true
+        exerciseCreation.text = ""
         
+            return true
     }
+ */
+ 
+ 
+    // this function creates a context of the entity then creates the object and stores a version of that object
+    func saveData(exerciseValue: String){
+        //Core Data*********
+        let context = appDelegate.persistentContainer.viewContext
+        // create a new object of the entity ExerciseList Core DAta*******
+        let newExercise = NSEntityDescription.insertNewObject(forEntityName: "ExerciseList", into: context)
+        newExercise.setValue(exerciseValue.self, forKey: "name")
+        
+        do {
+            try context.save()
+            //print(newExercise)
+        } catch {
+            print(error)
+        }
+    }
+    
+    
+    // this save function will save the name of the exercise we create to the Daily Workout Entity
+    func saveExNameData(exNames: String, exInfos: String){
+    //Core Data*********
+    let context = appDelegate.persistentContainer.viewContext
+    // create a new object of the entity ExerciseList Core DAta*******
+    let newDailyEx = NSEntityDescription.insertNewObject(forEntityName: "DailyWorkout", into: context)
+    
+    do {
+    newDailyEx.setValue(exNames.self, forKey: "exercisename")
+    newDailyEx.setValue(exInfos.self, forKey: "exerciseinfo")
+    newDailyEx.setValue(currentDate, forKey: "date")
+    newDailyEx.setValue(timeStamp, forKey: "timestamp")
+    
+    try context.save()
+    print("Saved Exercise Name and Info and Date")
+    print("")
+    print(newDailyEx)
+    } catch {
+    print(error)
+    }
+    }
+    
+    
+    // this calls context then a fetch request for the entity
+    // then it looks for the entity by username or whatever the attribute you select.
+    func loadData(){
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ExerciseList")
+        request.returnsObjectsAsFaults = false
+        
+        do{
+            let results = try context.fetch(request)
+        if(results.count > 0){
+            for result in results as! [NSManagedObject]{
+                if let exName = result.value(forKey: "name") as? String{
+                    
+                   exSelection.append(exName)
+                }
+            }
+        }
+
+    }
+    catch{
+    print(error)
+    }
+    }
+    
+    
+    
+    
+    
     
     
     
@@ -182,30 +219,26 @@ class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         valueToPass = exSelection[indexPath.row]
         
-        print("\(valueToPass)")
+        //print("\(valueToPass)")
     }
     
     
-    // this takes the segue that sends you back to the home screen and sends the data
-    //from the cell you picked along with it.
-    override func prepare(for segue: UIStoryboardSegue, sender: Any!){
-        if(segue.identifier == "exSelectToHomeSegue"){
-            let viewController = segue.destination as! ViewController
+    
+    @IBAction func addToRootView(_ sender: UIButton) {
+    
+        if(valueToPass == nil){
+            let title = "No Selection Made!"
+            let alert = UIAlertController(title: title, message: "Please Select an Exercise", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        }else{
             
-            if(valueToPass == nil){
-                let title = "No Selection Made!"
-                let alert = UIAlertController(title: title, message: "Please Select an Exercise", preferredStyle: .alert)
-                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-                alert.addAction(action)
-                present(alert, animated: true, completion: nil)
-            }else{
-                print("\(valueToPass)")
-                viewControllerExName.append(valueToPass)
-                viewController.todayEx = viewControllerExName
-            }
+            saveExNameData(exNames: valueToPass, exInfos: exInfoFromSelectionScreen)
             
+            // this works to pop back to original
+            navigationController?.popToRootViewController(animated: true)
         }
+        
     }
-    
-    
 }

@@ -16,6 +16,8 @@
 		04033E781F97054200457DC9 /* Fit_LogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04033E771F97054200457DC9 /* Fit_LogTests.swift */; };
 		04033E831F97054200457DC9 /* Fit_LogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04033E821F97054200457DC9 /* Fit_LogUITests.swift */; };
 		041CECAB1FBBC4CB005E3FB0 /* TodayExLog.plist in Resources */ = {isa = PBXBuildFile; fileRef = 041CECAA1FBBC4CB005E3FB0 /* TodayExLog.plist */; };
+		04B61C8F1FBFF52F0023824B /* ExerciseInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B61C8E1FBFF52F0023824B /* ExerciseInfoController.swift */; };
+		04B61C911FC0086F0023824B /* TestData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04B61C901FC0086F0023824B /* TestData.plist */; };
 		04B745F61FB2A18C00C0FC76 /* CustomTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B745F51FB2A18C00C0FC76 /* CustomTableCell.xib */; };
 		04B745FA1FB2A43E00C0FC76 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B745F91FB2A43E00C0FC76 /* CustomCell.swift */; };
 		04F0C9A01FAAB87900AE9057 /* ExerciseSelectionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F0C99F1FAAB87900AE9057 /* ExerciseSelectionScreen.swift */; };
@@ -56,6 +58,8 @@
 		04033E821F97054200457DC9 /* Fit_LogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fit_LogUITests.swift; sourceTree = "<group>"; };
 		04033E841F97054200457DC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		041CECAA1FBBC4CB005E3FB0 /* TodayExLog.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TodayExLog.plist; sourceTree = "<group>"; };
+		04B61C8E1FBFF52F0023824B /* ExerciseInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseInfoController.swift; sourceTree = "<group>"; };
+		04B61C901FC0086F0023824B /* TestData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TestData.plist; sourceTree = "<group>"; };
 		04B745F51FB2A18C00C0FC76 /* CustomTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableCell.xib; sourceTree = "<group>"; };
 		04B745F91FB2A43E00C0FC76 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		04F0C99F1FAAB87900AE9057 /* ExerciseSelectionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSelectionScreen.swift; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 				04033E5F1F97054200457DC9 /* AppDelegate.swift */,
 				04033E611F97054200457DC9 /* ViewController.swift */,
 				04F0C99F1FAAB87900AE9057 /* ExerciseSelectionScreen.swift */,
+				04B61C8E1FBFF52F0023824B /* ExerciseInfoController.swift */,
 				04B745F91FB2A43E00C0FC76 /* CustomCell.swift */,
 				04B745F51FB2A18C00C0FC76 /* CustomTableCell.xib */,
 				04033E631F97054200457DC9 /* Main.storyboard */,
@@ -123,8 +128,9 @@
 				04033E6B1F97054200457DC9 /* LaunchScreen.storyboard */,
 				04F0C9A31FAAF4A800AE9057 /* ExerciseLog.plist */,
 				041CECAA1FBBC4CB005E3FB0 /* TodayExLog.plist */,
-				04033E6E1F97054200457DC9 /* Info.plist */,
+				04B61C901FC0086F0023824B /* TestData.plist */,
 				04033E661F97054200457DC9 /* Fit_Log.xcdatamodeld */,
+				04033E6E1F97054200457DC9 /* Info.plist */,
 			);
 			path = "Fit Log";
 			sourceTree = "<group>";
@@ -272,6 +278,7 @@
 				041CECAB1FBBC4CB005E3FB0 /* TodayExLog.plist in Resources */,
 				04B745F61FB2A18C00C0FC76 /* CustomTableCell.xib in Resources */,
 				04033E6A1F97054200457DC9 /* Assets.xcassets in Resources */,
+				04B61C911FC0086F0023824B /* TestData.plist in Resources */,
 				04033E651F97054200457DC9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +307,7 @@
 				04033E621F97054200457DC9 /* ViewController.swift in Sources */,
 				04033E601F97054200457DC9 /* AppDelegate.swift in Sources */,
 				04B745FA1FB2A43E00C0FC76 /* CustomCell.swift in Sources */,
+				04B61C8F1FBFF52F0023824B /* ExerciseInfoController.swift in Sources */,
 				04F0C9A01FAAB87900AE9057 /* ExerciseSelectionScreen.swift in Sources */,
 				04033E681F97054200457DC9 /* Fit_Log.xcdatamodeld in Sources */,
 			);
