@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,31 +16,42 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iNk-Ht-gDp" id="ob5-pz-nVQ">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="81.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="81.666666666666671"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Exercise Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V57-xW-a4M">
-                        <rect key="frame" x="16" y="11" width="343" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V57-xW-a4M">
+                        <rect key="frame" x="16" y="11" width="343" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5b-ph-z8c">
+                        <rect key="frame" x="16" y="55" width="38" height="20"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Info:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5b-ph-z8c">
-                        <rect key="frame" x="16" y="54" width="44" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jc3-gy-gXK">
-                        <rect key="frame" x="68" y="54" width="291" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jc3-gy-gXK">
+                        <rect key="frame" x="62" y="53" width="180" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="t5b-ph-z8c" secondAttribute="bottom" constant="6.6699999999999999" id="3CW-WP-IcR"/>
+                    <constraint firstItem="V57-xW-a4M" firstAttribute="leading" secondItem="ob5-pz-nVQ" secondAttribute="leadingMargin" id="4sn-Bg-65L"/>
+                    <constraint firstItem="jc3-gy-gXK" firstAttribute="leading" secondItem="t5b-ph-z8c" secondAttribute="trailing" constant="8" id="8Et-Qg-xMP"/>
+                    <constraint firstItem="V57-xW-a4M" firstAttribute="trailing" secondItem="ob5-pz-nVQ" secondAttribute="trailingMargin" id="8FB-nY-ckq"/>
+                    <constraint firstAttribute="bottom" secondItem="jc3-gy-gXK" secondAttribute="bottom" constant="6.6699999999999999" id="FHf-LB-8cM"/>
+                    <constraint firstItem="jc3-gy-gXK" firstAttribute="leading" secondItem="t5b-ph-z8c" secondAttribute="trailing" constant="8" id="RS8-Rd-WJd"/>
+                    <constraint firstItem="jc3-gy-gXK" firstAttribute="top" secondItem="V57-xW-a4M" secondAttribute="bottom" constant="22" id="Xa5-K2-aJz"/>
+                    <constraint firstItem="V57-xW-a4M" firstAttribute="top" secondItem="ob5-pz-nVQ" secondAttribute="topMargin" id="ZJ6-v7-Mau"/>
+                    <constraint firstItem="jc3-gy-gXK" firstAttribute="top" secondItem="V57-xW-a4M" secondAttribute="bottom" constant="22" id="aMq-h7-Xi6"/>
+                    <constraint firstAttribute="trailing" secondItem="jc3-gy-gXK" secondAttribute="trailing" constant="133" id="jdX-ug-jpY"/>
+                    <constraint firstItem="t5b-ph-z8c" firstAttribute="top" secondItem="V57-xW-a4M" secondAttribute="bottom" constant="24" id="mwV-Zz-Erv"/>
+                    <constraint firstItem="t5b-ph-z8c" firstAttribute="leading" secondItem="ob5-pz-nVQ" secondAttribute="leading" constant="16" id="qMz-Rc-HXl"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="exerciseInfo" destination="jc3-gy-gXK" id="QPY-vX-qc6"/>

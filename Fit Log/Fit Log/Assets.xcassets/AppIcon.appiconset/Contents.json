@@ -3,109 +3,108 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "Dumbbell_Icon40-2.png",
+      "filename" : "fitLogLogo40px.png",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "Dumbbell_Icon60.png",
+      "filename" : "fitLogLogo60px.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Dumbbell_Icon58-1.png",
+      "filename" : "fitLogLogo58px.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Dumbbell_Icon87.png",
+      "filename" : "fitLogLogo87px.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "Dumbbell_Icon80-1.png",
+      "filename" : "fitLogLogo80px.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "Dumbbell_Icon120-1.png",
+      "filename" : "fitLogLogo120px.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "Dumbbell_Icon120.png",
+      "filename" : "fitLogLogo120px-1.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "Dumbbell_Icon180.png",
+      "filename" : "fitLogLogo180px.png",
       "scale" : "3x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "Dumbbell_Icon20.png",
+      "filename" : "fitLogLogo20px.png",
       "scale" : "1x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "Dumbbell_Icon40-1.png",
+      "filename" : "fitLogLogo40px-1.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "Dumbbell_Icon29.png",
+      "filename" : "fitLogLogo29px.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "Dumbbell_Icon58.png",
+      "filename" : "fitLogLogo58px-1.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "Dumbbell_Icon40.png",
+      "filename" : "fitLogLogo40px-2.png",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "Dumbbell_Icon80.png",
+      "filename" : "fitLogLogo80px-1.png",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "Dumbbell_Icon76.png",
+      "filename" : "fitLogLogo76px.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "Dumbbell_Icon152.png",
+      "filename" : "fitLogLogo152px.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "Dumbbell_Icon167.png",
+      "filename" : "fitLogLogo167px.png",
       "scale" : "2x"
     },
     {
-      "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "Dumbbell_Icon1024.png",
+      "size" : "1024x1024",
       "scale" : "1x"
     }
   ],

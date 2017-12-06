@@ -32,10 +32,6 @@ class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableV
     // use this to parse the string variable from the plist
     var exSelectVariable = ""
     
-    
-    // this is the text field to create new exercises
-    @IBOutlet weak var exerciseCreation: UITextField!
-    
     // this is the outlet for the tableview
     @IBOutlet weak var exSelectionTable: UITableView!
     
@@ -59,16 +55,13 @@ class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableV
         var timeCombine = (((hours * 60) * 60) + (minutes * 60) + seconds)
         
         timeStamp = "\(timeCombine)"
-        
-        // this is for return removes keyboard
-        self.exerciseCreation.delegate = self
     }
     
     
     // this removes the text entry and has a pop up to add an exercise to the list
     @IBAction func addExercise(_ sender: Any) {
         
-        let alert = UIAlertController(title: "New Name", message: "Add a new name", preferredStyle: .alert)
+        let alert = UIAlertController(title: "New Exercise!", message: "Add a New Exercise: ", preferredStyle: .alert)
         
         let saveAction = UIAlertAction(title: "Save", style: .default) {
             [unowned self] action in
@@ -91,30 +84,7 @@ class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableV
     }
     
     
-   /* // this function makes the keyboard go away when you press return key
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        // takes variable from text field when you hit return
-        var exTextField = exerciseCreation.text
-      
-        
-        // appends the array that feeds the tableview
-        exSelection.append(exTextField!)
-        
-        exSelectVariable = exSelection.joined(separator: ":")
-        
-        
-        // this reloads the table with the new data
-        exSelectionTable.reloadData()
-        saveData(exerciseValue: exTextField!)
-        
-        exerciseCreation.resignFirstResponder()
-        
-        exerciseCreation.text = ""
-        
-            return true
-    }
- */
+  
  
  
     // this function creates a context of the entity then creates the object and stores a version of that object
@@ -223,6 +193,31 @@ class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableV
     }
     
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath){
+        
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "ExerciseList")
+        request.predicate = NSPredicate(format: "name == %@", exSelection[indexPath.row])
+        
+        let result = try? context.fetch(request)
+        let resultData = result as! [ExerciseList]
+        
+        for object in resultData {
+            context.delete(object)
+        }
+        exSelection.remove(at: indexPath.row)
+        do {
+            try context.save()
+            print("saved! after delte Exercise Selection Screen")
+        } catch let error as NSError  {
+            print("Could not save after Delete \(error), \(error.userInfo)")
+        }
+        
+        self.exSelectionTable.deleteRows(at: [indexPath], with: .fade)
+    }
+    
+    
     
     @IBAction func addToRootView(_ sender: UIButton) {
     
@@ -242,3 +237,40 @@ class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableV
         
     }
 }
+
+
+
+
+
+
+
+/*
+ 
+ // this is for return removes keyboard
+ // this needs to be in the view did load
+ self.exerciseCreation.delegate = self
+ 
+ // this function makes the keyboard go away when you press return key
+ func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+ 
+ // takes variable from text field when you hit return
+ var exTextField = exerciseCreation.text
+ 
+ 
+ // appends the array that feeds the tableview
+ exSelection.append(exTextField!)
+ 
+ exSelectVariable = exSelection.joined(separator: ":")
+ 
+ 
+ // this reloads the table with the new data
+ exSelectionTable.reloadData()
+ saveData(exerciseValue: exTextField!)
+ 
+ exerciseCreation.resignFirstResponder()
+ 
+ exerciseCreation.text = ""
+ 
+ return true
+ }
+ */

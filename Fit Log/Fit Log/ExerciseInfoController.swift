@@ -41,6 +41,10 @@ class ExerciseInfoController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
         
         loadData()
+        
+        // this is how to set the tile
+        // the back button is set in the previous view controller
+        self.navigationItem.title = selectedExName
     }
 
     
@@ -58,18 +62,22 @@ class ExerciseInfoController: UIViewController, UITableViewDataSource, UITableVi
             alert.addAction(action)
             present(alert, animated: true, completion: nil)
         }else{
-            if(weight == nil){
-                repsWeightCombine = ("\(reps!) Reps")
+            if(weight == ""){
+                repsWeightCombine = ("\(reps!) Reps x 0 lbs")
                 
                 editExInfo.append(repsWeightCombine)
             }else{
-        repsWeightCombine = ("\(reps!) X \(weight!) lbs")
+        repsWeightCombine = ("\(reps!) x \(weight!) lbs")
             
                 editExInfo.append(repsWeightCombine)
             }
         }
         
         exInfoTable.reloadData()
+        
+        // resignfirstResponder makes keyboard go away
+        setReps.resignFirstResponder()
+        setWeight.resignFirstResponder()
         
         setReps.text = ""
         setWeight.text = ""
@@ -112,7 +120,7 @@ class ExerciseInfoController: UIViewController, UITableViewDataSource, UITableVi
             print(error)
         }
         
-        
+        print(exInfoArrayCombine)
         navigationController?.popToRootViewController(animated: true)
     }
     
@@ -150,18 +158,6 @@ class ExerciseInfoController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     
-    
-
-    // MARK: - Table view data source**********************************
-    // delegate methods
-/*
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-*/
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return editExInfo.count
     }
@@ -182,7 +178,14 @@ class ExerciseInfoController: UIViewController, UITableViewDataSource, UITableVi
     }
 
 
-    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath){
+        
+        // remove from index path of array and table
+        editExInfo.remove(at: indexPath.row)
+        self.exInfoTable.deleteRows(at: [indexPath], with: .fade)
+        
+        // if you hit save it will apply the changes to the core data when it leaves the view
+    }
     
     
     /*
@@ -193,9 +196,10 @@ class ExerciseInfoController: UIViewController, UITableViewDataSource, UITableVi
     }
     */
 
+   
     /*
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -203,8 +207,8 @@ class ExerciseInfoController: UIViewController, UITableViewDataSource, UITableVi
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
-
+    
+*/
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
@@ -220,14 +224,5 @@ class ExerciseInfoController: UIViewController, UITableViewDataSource, UITableVi
     }
     */
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

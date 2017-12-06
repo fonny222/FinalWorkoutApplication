@@ -51,13 +51,19 @@ UITableViewDelegate {
         let xib = UINib(nibName: "CustomTableCell", bundle: nil)
         todayExTable.register(xib, forCellReuseIdentifier: cellTableIdentifier)
         
-        todayExTable.rowHeight = 75
+        // this is just the code to set the height whatever you want
+       // todayExTable.rowHeight = 75
         
+        // Along with auto layout, these are the keys for enabling variable cell height
+        // in the custom cell after setting auto layout constraints you MUST set "lines" to 0 this allows dynamic cell change
+        todayExTable.estimatedRowHeight = 44.0
+        todayExTable.rowHeight = UITableViewAutomaticDimension
         
         // for the date formatting
         // had to call it in here otherwise it wouldn't load
         formatter.dateFormat = "MM/dd/YYYY"
         currentDate = formatter.string(from: date)
+ 
     }
 
    /// this will reload the table data each time the view appears
@@ -108,6 +114,7 @@ UITableViewDelegate {
         }
     }
     
+    
     //MARK:-
     //MARK: TableView Data Source Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)-> Int{
@@ -132,11 +139,52 @@ UITableViewDelegate {
         }else{
             cell.exerciseInfo.text = ""
         }
-       // print(currentDate)
+        
+        /*
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 75
+ */
         return cell
     }
     
 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath){
+        
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "DailyWorkout")
+        
+        let predicateName = NSPredicate(format: "exercisename ==%@", todayEx[indexPath.row])
+        let predicateTime = NSPredicate(format: "timestamp ==%@", todayExTime[indexPath.row])
+        let multiPredicate = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [predicateName, predicateTime] )
+        
+        request.predicate = multiPredicate
+        
+        let result = try? context.fetch(request)
+        let resultData = result as! [DailyWorkout]
+        
+        for object in resultData {
+            context.delete(object)
+        }
+        todayEx.remove(at: indexPath.row)
+        todayExInfo.remove(at: indexPath.row)
+        todayExDate.remove(at: indexPath.row)
+        todayExTime.remove(at: indexPath.row)
+        do {
+            try context.save()
+            print("saved! after delete from initial view")
+        } catch let error as NSError  {
+            print("Could not save after Delete from Initial View \(error), \(error.userInfo)")
+        }
+        
+        self.todayExTable.deleteRows(at: [indexPath], with: .fade)
+    }
+    
+    
+    
+    
+    
+    
     // this is the segue for clicking on a cell. When you click on a cell it loads the next view controller that will allow you to edit the sets reps and weights
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath as IndexPath)
