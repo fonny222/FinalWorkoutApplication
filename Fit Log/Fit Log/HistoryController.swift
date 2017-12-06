@@ -34,16 +34,20 @@ class HistoryController: UIViewController, UITableViewDataSource, UITableViewDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        // this sets the maximum date to whatever the current date is in the picker
+        pickADate.maximumDate = Date()
         
+        // for the custom cells
         historyTable.register(CustomCell.self, forCellReuseIdentifier: cellTableIdentifier)
-        
         let xib = UINib(nibName: "CustomTableCell", bundle: nil)
         historyTable.register(xib, forCellReuseIdentifier: cellTableIdentifier)
         
-        
+        // for the dynamically changing cells
         historyTable.estimatedRowHeight = 44.0
         historyTable.rowHeight = UITableViewAutomaticDimension
         
+        // loads data on start
         loadData()
     }
    

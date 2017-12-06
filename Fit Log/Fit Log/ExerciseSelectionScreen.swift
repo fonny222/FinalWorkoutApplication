@@ -97,9 +97,8 @@ class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableV
         
         do {
             try context.save()
-            //print(newExercise)
         } catch {
-            print(error)
+            print("saveData could not be saved \(error)")
         }
     }
     
@@ -119,10 +118,8 @@ class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableV
     
     try context.save()
     print("Saved Exercise Name and Info and Date")
-    print("")
-    print(newDailyEx)
     } catch {
-    print(error)
+    print("saveExNameData could not be saved\(error)")
     }
     }
     
@@ -147,7 +144,7 @@ class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableV
 
     }
     catch{
-    print(error)
+    print("Could not load data in Exercise Selection Screen\(error)")
     }
     }
     
@@ -178,8 +175,6 @@ class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableV
         // this loads the table with the array after the '=' sign
         cell?.textLabel?.text = exSelection[indexPath.row]
         
-        //print(exercises[indexPath.row])
-        
         return cell!
     }
     
@@ -188,8 +183,6 @@ class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableV
     // this grabs the string that was at the index path you select in the table
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         valueToPass = exSelection[indexPath.row]
-        
-        //print("\(valueToPass)")
     }
     
     
@@ -239,38 +232,3 @@ class ExerciseSelectionScreen: UIViewController, UITableViewDataSource, UITableV
 }
 
 
-
-
-
-
-
-/*
- 
- // this is for return removes keyboard
- // this needs to be in the view did load
- self.exerciseCreation.delegate = self
- 
- // this function makes the keyboard go away when you press return key
- func textFieldShouldReturn(_ textField: UITextField) -> Bool {
- 
- // takes variable from text field when you hit return
- var exTextField = exerciseCreation.text
- 
- 
- // appends the array that feeds the tableview
- exSelection.append(exTextField!)
- 
- exSelectVariable = exSelection.joined(separator: ":")
- 
- 
- // this reloads the table with the new data
- exSelectionTable.reloadData()
- saveData(exerciseValue: exTextField!)
- 
- exerciseCreation.resignFirstResponder()
- 
- exerciseCreation.text = ""
- 
- return true
- }
- */

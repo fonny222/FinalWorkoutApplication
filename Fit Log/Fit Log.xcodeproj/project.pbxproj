@@ -15,14 +15,11 @@
 		04033E6D1F97054200457DC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04033E6B1F97054200457DC9 /* LaunchScreen.storyboard */; };
 		04033E781F97054200457DC9 /* Fit_LogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04033E771F97054200457DC9 /* Fit_LogTests.swift */; };
 		04033E831F97054200457DC9 /* Fit_LogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04033E821F97054200457DC9 /* Fit_LogUITests.swift */; };
-		041CECAB1FBBC4CB005E3FB0 /* TodayExLog.plist in Resources */ = {isa = PBXBuildFile; fileRef = 041CECAA1FBBC4CB005E3FB0 /* TodayExLog.plist */; };
 		04B61C8F1FBFF52F0023824B /* ExerciseInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B61C8E1FBFF52F0023824B /* ExerciseInfoController.swift */; };
-		04B61C911FC0086F0023824B /* TestData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04B61C901FC0086F0023824B /* TestData.plist */; };
 		04B745F61FB2A18C00C0FC76 /* CustomTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B745F51FB2A18C00C0FC76 /* CustomTableCell.xib */; };
 		04B745FA1FB2A43E00C0FC76 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B745F91FB2A43E00C0FC76 /* CustomCell.swift */; };
 		04E968F21FD7066300135C8E /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E968F11FD7066300135C8E /* HistoryController.swift */; };
 		04F0C9A01FAAB87900AE9057 /* ExerciseSelectionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F0C99F1FAAB87900AE9057 /* ExerciseSelectionScreen.swift */; };
-		04F0C9A41FAAF4A800AE9057 /* ExerciseLog.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04F0C9A31FAAF4A800AE9057 /* ExerciseLog.plist */; };
 		04F0C9A71FAE0D5400AE9057 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F0C9A61FAE0D5400AE9057 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,14 +55,11 @@
 		04033E7E1F97054200457DC9 /* Fit LogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fit LogUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04033E821F97054200457DC9 /* Fit_LogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fit_LogUITests.swift; sourceTree = "<group>"; };
 		04033E841F97054200457DC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		041CECAA1FBBC4CB005E3FB0 /* TodayExLog.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TodayExLog.plist; sourceTree = "<group>"; };
 		04B61C8E1FBFF52F0023824B /* ExerciseInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseInfoController.swift; sourceTree = "<group>"; };
-		04B61C901FC0086F0023824B /* TestData.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TestData.plist; sourceTree = "<group>"; };
 		04B745F51FB2A18C00C0FC76 /* CustomTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableCell.xib; sourceTree = "<group>"; };
 		04B745F91FB2A43E00C0FC76 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		04E968F11FD7066300135C8E /* HistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
 		04F0C99F1FAAB87900AE9057 /* ExerciseSelectionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSelectionScreen.swift; sourceTree = "<group>"; };
-		04F0C9A31FAAF4A800AE9057 /* ExerciseLog.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ExerciseLog.plist; sourceTree = "<group>"; };
 		04F0C9A61FAE0D5400AE9057 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -129,9 +123,6 @@
 				04033E631F97054200457DC9 /* Main.storyboard */,
 				04033E691F97054200457DC9 /* Assets.xcassets */,
 				04033E6B1F97054200457DC9 /* LaunchScreen.storyboard */,
-				04F0C9A31FAAF4A800AE9057 /* ExerciseLog.plist */,
-				041CECAA1FBBC4CB005E3FB0 /* TodayExLog.plist */,
-				04B61C901FC0086F0023824B /* TestData.plist */,
 				04033E661F97054200457DC9 /* Fit_Log.xcdatamodeld */,
 				04033E6E1F97054200457DC9 /* Info.plist */,
 			);
@@ -277,11 +268,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				04033E6D1F97054200457DC9 /* LaunchScreen.storyboard in Resources */,
-				04F0C9A41FAAF4A800AE9057 /* ExerciseLog.plist in Resources */,
-				041CECAB1FBBC4CB005E3FB0 /* TodayExLog.plist in Resources */,
 				04B745F61FB2A18C00C0FC76 /* CustomTableCell.xib in Resources */,
 				04033E6A1F97054200457DC9 /* Assets.xcassets in Resources */,
-				04B61C911FC0086F0023824B /* TestData.plist in Resources */,
 				04033E651F97054200457DC9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

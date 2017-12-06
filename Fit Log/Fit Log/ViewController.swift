@@ -13,7 +13,6 @@ import CoreData
 class ViewController: UIViewController, UITableViewDataSource,
 UITableViewDelegate {
     
-    var test = ""
     
    // these arrays populate the table
     var todayEx:[String] = []
@@ -140,10 +139,6 @@ UITableViewDelegate {
             cell.exerciseInfo.text = ""
         }
         
-        /*
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 75
- */
         return cell
     }
     
